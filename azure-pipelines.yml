@@ -75,10 +75,7 @@ stages:
       artifact: drop
 
 - template: templates/deploy.yml
-  parameters:
-    current_stage: dev
-    prev_stage: 'Build'
-    WebAppName: 'tailspin-space-game-web-dev-17587'
+
 #- stage: 'Dev'
 #  displayName: 'Deploy the web application'
 #  dependsOn: Build
