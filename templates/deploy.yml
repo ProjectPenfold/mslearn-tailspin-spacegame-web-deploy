@@ -2,7 +2,7 @@ parameters:
   current_stage: 'dev'
   dependsOn: 'Build'
   WebAppName: 'tailspin-space-game-web-dev-17587'
-  resourceManager: 'Azure App Service Deploy: website'
+  resourceManager: 'Resource Manager - Tailspin - Space Game'
 
 stages:
 - stage: '${{ parameters.current_stage }}'
