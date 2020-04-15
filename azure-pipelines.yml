@@ -79,6 +79,7 @@ stages:
     current_stage: 'dev'
     dependsOn: 'Build'
     WebAppName: '$(WebAppNameDev)'
+    resourceManager: 'Azure App Service Deploy: website'
 
 - template: templates/deploy.yml
   parameters:

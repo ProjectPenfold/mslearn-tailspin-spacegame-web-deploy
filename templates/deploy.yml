@@ -2,6 +2,7 @@ parameters:
   current_stage: 'dev'
   dependsOn: 'Build'
   WebAppName: 'tailspin-space-game-web-dev-17587'
+  resourceManager: 'Azure App Service Deploy: website'
 
 stages:
 - stage: '${{ parameters.current_stage }}'
@@ -24,6 +25,6 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure App Service Deploy: website'
             inputs:
-              azureSubscription: 'Resource Manager - Tailspin - Space Game'
+              azureSubscription: '${{ parameters.resourceManager }}'
               appName: '${{ parameters.WebAppName }}'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
