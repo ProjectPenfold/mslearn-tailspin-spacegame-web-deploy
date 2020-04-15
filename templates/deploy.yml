@@ -3,6 +3,7 @@ parameters:
   prev_stage: 'Build'
   WebAppName: 'tailspin-space-game-web-dev-17587'
 
+stages:
 - stage: '${{ parameters.current_stage }}'
   displayName: 'Deploy to the ${{ parameters.current_stage }} environment'
   dependsOn: '${{ parameters.prev_stage }}'
