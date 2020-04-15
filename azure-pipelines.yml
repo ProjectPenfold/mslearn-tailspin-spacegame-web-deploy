@@ -110,7 +110,7 @@ stages:
   jobs:
   - deployment: Deloy
     pool:
-      vmImage: 'ubuntu-1604'
+      vmImage: 'ubuntu-16.04'
     environment: test
     variables:
     - group: 'Release'
