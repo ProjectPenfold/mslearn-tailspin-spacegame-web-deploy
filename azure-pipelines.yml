@@ -75,12 +75,22 @@ stages:
       artifact: drop
 
 - template: templates/deploy.yml
+  parameters:
+    current_stage: 'dev'
+    dependsOn: 'Build'
+    WebAppName: '$(WebAppNameDev)'
 
 - template: templates/deploy.yml
   parameters:
     current_stage: 'test'
     dependsOn: 'Build'
     WebAppName: '$(WebAppNameTest)'
+
+- template: templates/deploy.yml
+  parameters:
+    current_stage: 'staging'
+    dependsOn: 'test'
+    WebAppName: '$(WebAppNameStaging)'
 
 #- stage: 'Dev'
 #  displayName: 'Deploy the web application'
@@ -135,26 +145,26 @@ stages:
 #              appName: '$(WebAppNameTest)'
 #              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
 
-- stage: 'Staging'
-  displayName: 'Deploy to the staging environment'
-  dependsOn: Test
-  #condition: eq(variables['Build.Reason'], 'Schedule')
-  jobs:
-  - deployment: Deloy
-    pool:
-      vmImage: 'ubuntu-16.04'
-    environment: staging
-    variables:
-    - group: 'Release'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - download: current
-            artifact: drop
-          - task: AzureWebApp@1
-            displayName: 'Azure App Service Deploy: website'
-            inputs:
-              azureSubscription: 'Resource Manager - Tailspin - Space Game'
-              appName: '$(WebAppNameStaging)'
-              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+#- stage: 'Staging'
+#  displayName: 'Deploy to the staging environment'
+#  dependsOn: Test
+#  #condition: eq(variables['Build.Reason'], 'Schedule')
+#  jobs:
+#  - deployment: Deloy
+#    pool:
+#      vmImage: 'ubuntu-16.04'
+#    environment: staging
+#    variables:
+#    - group: 'Release'
+#    strategy:
+#      runOnce:
+#        deploy:
+#          steps:
+#          - download: current
+#            artifact: drop
+#          - task: AzureWebApp@1
+#            displayName: 'Azure App Service Deploy: website'
+#            inputs:
+#              azureSubscription: 'Resource Manager - Tailspin - Space Game'
+#              appName: '$(WebAppNameStaging)'
+#              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
