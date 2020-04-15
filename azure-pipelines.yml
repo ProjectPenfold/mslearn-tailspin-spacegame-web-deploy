@@ -70,7 +70,8 @@ stages:
     environment: dev
     variables:
     - group: Release
-      azureSubscription: 'Resource Manager - Tailspin - Space Game'
+    - name: azureSubscription
+      value: 'Resource Manager - Tailspin - Space Game'
 
     strategy:
       runOnce:
