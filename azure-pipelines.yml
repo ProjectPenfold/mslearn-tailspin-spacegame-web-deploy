@@ -88,14 +88,14 @@ stages:
     current_stage: 'dev'
     dependsOn: 'Build'
     WebAppName: '$(WebAppNameDev)'
-    resourceManager: 'Resource Manager - Tailspin - Space Game'
+    resourceManager: 'new'
 
 - template: templates/deploy.yml
   parameters:
     current_stage: 'test'
     dependsOn: 'Build'
     WebAppName: '$(WebAppNameTest)'
-    resourceManager: 'rm'
+    resourceManager: 'new'
 
 - template: templates/deploy.yml
   parameters:
