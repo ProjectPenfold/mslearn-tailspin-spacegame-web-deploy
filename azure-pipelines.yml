@@ -1,5 +1,5 @@
 trigger:
-- '*'
+- 'release'
 
 variables:
   buildConfiguration: 'Release'
@@ -73,6 +73,8 @@ stages:
 
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
+
+# Deployments start here, using templates
 
 - template: templates/deploy.yml
   parameters:
