@@ -13,7 +13,7 @@ stages:
   jobs:
   - deployment: '${{ parameters.current_stage }}'
     pool:
-      vmImage: 'ubuntu-16.04'
+      vmImage: 'Hosted VS2017'
     environment: '${{ parameters.current_stage }}'
     strategy:
       runOnce:
