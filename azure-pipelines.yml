@@ -9,8 +9,10 @@ trigger:
       - templates/*
 
 variables:
-  buildConfiguration: 'Release'
-  releaseBranchName: 'release'
+  - name: buildConfiguration
+    value: 'Release'
+  - name: releaseBranchName
+    value: 'release'
   - template: "template/vars.yml"
 
 schedules:
