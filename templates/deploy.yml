@@ -28,7 +28,8 @@ stages:
             inputs:
               azureSubscription: '${{ parameters.resourceManager }}'
               appType: 'webApp'
-              #deployToSlotOrASE: '${{ parameters.slotBool }}'
-              #SlotName: '${{ parameters.slotName }}'
               appName: '${{ parameters.WebAppName }}'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+              ${{ if eq(parameters.slotBool, 'true') }}:
+                deployToSlotOrASE: '${{ parameters.slotBool }}'
+                SlotName: '${{ parameters.current_stage }}'
