@@ -22,18 +22,18 @@ stages:
         deploy:
           steps:
           - ${{ if neq(parameters.current_stage, 'prod')}}
-          - download: current
-            artifact: drop
-          - task: AzureWebApp@1
-            displayName: 'Azure App Service Deploy: website'
-            inputs:
-              azureSubscription: '${{ parameters.resourceManager }}'
-              appType: 'webApp'
-              appName: '${{ parameters.WebAppName }}'
-              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
-              ${{ if eq(parameters.slotBool, 'true') }}:
-                deployToSlotOrASE: '${{ parameters.slotBool }}'
-                SlotName: '${{ parameters.current_stage }}'
+            - download: current
+              artifact: drop
+            - task: AzureWebApp@1
+              displayName: 'Azure App Service Deploy: website'
+              inputs:
+                azureSubscription: '${{ parameters.resourceManager }}'
+                appType: 'webApp'
+                appName: '${{ parameters.WebAppName }}'
+                package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+                ${{ if eq(parameters.slotBool, 'true') }}:
+                  deployToSlotOrASE: '${{ parameters.slotBool }}'
+                  SlotName: '${{ parameters.current_stage }}'
           - ${{ if eq(parameters.current_stage, 'prod')}}
             - task: AzureAppServiceManage@0
               displayName: 'Azure App Service - Swap RC to Production'
