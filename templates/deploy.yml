@@ -13,7 +13,7 @@ stages:
   jobs:
   - deployment: '${{ parameters.current_stage }}'
     pool:
-      name: 'Hosted VS2017'
+      name: Hosted VS2017
     environment: '${{ parameters.current_stage }}'
     strategy:
       runOnce:
