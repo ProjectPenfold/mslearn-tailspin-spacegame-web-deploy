@@ -78,12 +78,12 @@ stages:
 
 # Deployments start here, using templates
 
-- template: templates/deploy.yml
-  parameters:
-    current_stage: 'dev'
-    dependsOn: 'Build'
-    WebAppName: '$(WebAppNameDev)'
-    resourceManager: 'sc-all'
+#- template: templates/deploy.yml
+#  parameters:
+#    current_stage: 'dev'
+#    dependsOn: 'Build'
+#    WebAppName: '$(WebAppNameDev)'
+#    resourceManager: 'sc-all'
 
 - template: templates/deploy.yml
   parameters:
