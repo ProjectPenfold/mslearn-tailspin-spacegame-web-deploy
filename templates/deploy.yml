@@ -5,6 +5,7 @@ parameters:
   resourceManager: 'sc-all'
   slotBool: false
   slotName: 'rc'
+  ResourceGroupName: 'tailspin-space-game-rg'
 
 stages:
 - stage: '${{ parameters.current_stage }}'
@@ -34,6 +35,7 @@ stages:
                 DeploymentType: 'webDeploy'
                 RemoveAdditionalFilesFlag: true
                 ${{ if eq(parameters.slotBool, 'true') }}:
+                  ResourceGroupName: '${{ parameters.ResourceGroupName }}'
                   deployToSlotOrASE: '${{ parameters.slotBool }}'
                   SlotName: '${{ parameters.current_stage }}'
             #- task: AzureWebApp@1
@@ -53,5 +55,5 @@ stages:
                 azureSubscription: ${{ parameters.resourceManager}}
                 Action: 'Swap Slots'
                 WebAppName: ${{ parameters.WebAppName}}
-                ResourceGroupName: 'tailspin-space-game-rg'
+                ResourceGroupName: '${{ parameters.ResourceGroupName }}'
                 SourceSlot: 'rc'

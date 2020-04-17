@@ -85,17 +85,17 @@ stages:
 #    WebAppName: '$(WebAppNameDev)'
 #    resourceManager: 'sc-all'
 
-- template: templates/deploy.yml
-  parameters:
-    current_stage: 'test'
-    dependsOn: 'Build'
-    WebAppName: '$(WebAppNameTest)'
-    resourceManager: '$(rmTest)'
+#- template: templates/deploy.yml
+#  parameters:
+#    current_stage: 'test'
+#    dependsOn: 'Build'
+#    WebAppName: '$(WebAppNameTest)'
+#    resourceManager: '$(rmTest)'
 
 - template: templates/deploy.yml
   parameters:
     current_stage: 'rc'
-    dependsOn: 'test'
+    dependsOn: 'Build'
     WebAppName: '$(WebAppNameProd)'
     resourceManager: '$(rmRC)'
     slotBool: true
