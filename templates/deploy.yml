@@ -16,7 +16,7 @@ stages:
       vmImage: 'ubuntu-16.04'
     environment: '${{ parameters.current_stage }}'
     variables:
-  - template: "templates/vars.yml"
+    - template: "templates/vars.yml"
     strategy:
       runOnce:
         deploy:
