@@ -1,0 +1,8 @@
+variables:
+  WebAppNameDev: 'tailspin-space-game-web-dev-835'
+  WebAppNameTest: 'tailspin-space-game-web-test-835'
+  WebAppNameStaging: 'tailspin-space-game-web-staging-835'
+  rmDev: 'sc-all'
+  rmTest: 'sc-all'
+  rmRC: 'sc-all'
+  rmProd: 'sc-all'

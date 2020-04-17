@@ -11,6 +11,7 @@ trigger:
 variables:
   buildConfiguration: 'Release'
   releaseBranchName: 'release'
+  - template: "template/vars.yml"
 
 schedules:
   - cron: '0 3 * * *'
@@ -88,17 +89,18 @@ stages:
     current_stage: 'dev'
     dependsOn: 'Build'
     WebAppName: '$(WebAppNameDev)'
-    resourceManager: 'new'
+    resourceManager: '$(rmDev)'
 
 - template: templates/deploy.yml
   parameters:
     current_stage: 'test'
     dependsOn: 'Build'
     WebAppName: '$(WebAppNameTest)'
-    resourceManager: 'new'
+    resourceManager: '$(rmTest)'
 
 - template: templates/deploy.yml
   parameters:
-    current_stage: 'staging'
+    current_stage: 'rc'
     dependsOn: 'test'
     WebAppName: '$(WebAppNameStaging)'
+    resourceManager: '$(rmRC)'
