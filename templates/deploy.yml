@@ -56,4 +56,4 @@ stages:
                 Action: 'Swap Slots'
                 WebAppName: ${{ parameters.WebAppName}}
                 ResourceGroupName: '${{ parameters.ResourceGroupName }}'
-                SourceSlot: 'rc'
+                SourceSlot: 'RC'
