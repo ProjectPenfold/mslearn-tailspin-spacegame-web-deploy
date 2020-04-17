@@ -98,3 +98,4 @@ stages:
     dependsOn: 'test'
     WebAppName: '$(WebAppNameStaging)'
     resourceManager: 'sc-all'
+    slotBool: true
