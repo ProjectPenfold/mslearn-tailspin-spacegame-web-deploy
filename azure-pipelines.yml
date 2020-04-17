@@ -83,18 +83,18 @@ stages:
     current_stage: 'dev'
     dependsOn: 'Build'
     WebAppName: '$(variables.WebAppNameDev)'
-    resourceManager: '$(variables.rmDev)'
+    resourceManager: 'sc-all'
 
 - template: templates/deploy.yml
   parameters:
     current_stage: 'test'
     dependsOn: 'Build'
     WebAppName: '$(variables.WebAppNameTest)'
-    resourceManager: '$(variables.rmTest)'
+    resourceManager: 'sc-all'
 
 - template: templates/deploy.yml
   parameters:
     current_stage: 'rc'
     dependsOn: 'test'
     WebAppName: '$(variables.WebAppNameStaging)'
-    resourceManager: '$(variables.rmRC)'
+    resourceManager: 'sc-all'

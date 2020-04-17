@@ -2,7 +2,7 @@ parameters:
   current_stage: 'dev'
   dependsOn: 'Build'
   WebAppName: 'tailspin-space-game-web-dev-17587'
-  resourceManager: 'new'
+  resourceManager: 'sc-all'
   slotBool: false
   slotName: 'rc'
 
