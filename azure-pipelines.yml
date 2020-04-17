@@ -13,7 +13,7 @@ variables:
     value: 'Release'
   - name: releaseBranchName
     value: 'release'
-  - template: "template/vars.yml"
+  - template: "templates/vars.yml"
 
 schedules:
   - cron: '0 3 * * *'
