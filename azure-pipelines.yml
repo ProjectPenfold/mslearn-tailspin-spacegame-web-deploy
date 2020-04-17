@@ -97,7 +97,7 @@ stages:
     current_stage: 'rc'
     dependsOn: 'test'
     WebAppName: '$(WebAppNameProd)'
-    resourceManager: 'sc-all'
+    resourceManager: '$(rmRC)'
     slotBool: true
 
 - template: templates/deploy.yml
@@ -105,5 +105,5 @@ stages:
     current_stage: 'prod'
     dependsOn: 'rc'
     WebAppName: '$(WebAppNameProd)'
-    resourceManager: 'sc-all'
+    resourceManager: '$(rmProd)'
     slotBool: true
