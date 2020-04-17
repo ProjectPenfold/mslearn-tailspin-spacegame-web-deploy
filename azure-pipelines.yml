@@ -103,7 +103,7 @@ stages:
 - template: templates/deploy.yml
   parameters:
     current_stage: 'prod'
-    dependsOn: 'rc'
+    dependsOn: 'build'
     WebAppName: '$(WebAppNameProd)'
     resourceManager: '$(rmProd)'
     slotBool: true
