@@ -21,7 +21,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - ${{ if neq(parameters.current_stage, 'prod')}}:
+          - ${{ if ne(parameters.current_stage, 'prod')}}:
             - download: current
               artifact: drop
             - task: AzureWebApp@1
