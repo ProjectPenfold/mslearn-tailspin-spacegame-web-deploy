@@ -38,7 +38,7 @@ stages:
                   ResourceGroupName: '${{ parameters.ResourceGroupName }}'
                   deployToSlotOrASE: '${{ parameters.slotBool }}'
                   SlotName: '${{ parameters.current_stage }}'
-          - ${{ if and(eq(parameters.current_stage, 'prod'), eq(parameters.dependsOn, 'rc')}}:
+          - ${{ if and(eq(parameters.current_stage, 'prod'), eq(parameters.dependsOn, 'rc'))}}:
             - task: AzureAppServiceManage@0
               displayName: 'Azure App Service - Swap RC to Production'
               inputs:
