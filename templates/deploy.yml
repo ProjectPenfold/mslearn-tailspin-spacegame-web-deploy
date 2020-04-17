@@ -22,16 +22,30 @@ stages:
           - ${{ if ne(parameters.current_stage, 'prod')}}:
             - download: current
               artifact: drop
-            - task: AzureWebApp@1
+            - task: AzureRmWebAppDeployment@4
               displayName: 'Azure App Service Deploy: website'
               inputs:
+                ConnectionType: 'AzureRM'
                 azureSubscription: '${{ parameters.resourceManager }}'
                 appType: 'webApp'
-                appName: '${{ parameters.WebAppName }}'
-                package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+                WebAppName: '${{ parameters.WebAppName }}'
+                packageForLinux: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+                enableCustomDeployment: true
+                DeploymentType: 'webDeploy'
+                RemoveAdditionalFilesFlag: true
                 ${{ if eq(parameters.slotBool, 'true') }}:
                   deployToSlotOrASE: '${{ parameters.slotBool }}'
                   SlotName: '${{ parameters.current_stage }}'
+            #- task: AzureWebApp@1
+            #  displayName: 'Azure App Service Deploy: website'
+            #  inputs:
+            #    azureSubscription: '${{ parameters.resourceManager }}'
+            #    appType: 'webApp'
+            #    appName: '${{ parameters.WebAppName }}'
+            #    package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+            #    ${{ if eq(parameters.slotBool, 'true') }}:
+            #      deployToSlotOrASE: '${{ parameters.slotBool }}'
+            #      SlotName: '${{ parameters.current_stage }}'
           - ${{ if eq(parameters.current_stage, 'prod')}}:
             - task: AzureAppServiceManage@0
               displayName: 'Azure App Service - Swap RC to Production'
