@@ -41,4 +41,5 @@ stages:
                 azureSubscription: ${{ parameters.resourceManager}}
                 Action: 'Swap Slots'
                 WebAppName: ${{ parameters.WebAppName}}
+                ResourceGroupName: 'tailspin-space-game-rg'
                 SourceSlot: 'rc'
