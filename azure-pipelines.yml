@@ -90,7 +90,7 @@ stages:
     current_stage: 'test'
     dependsOn: 'Build'
     WebAppName: '$(WebAppNameTest)'
-    resourceManager: 'sc-all'
+    resourceManager: '$(rmTest)'
 
 - template: templates/deploy.yml
   parameters:
