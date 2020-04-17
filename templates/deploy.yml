@@ -3,6 +3,8 @@ parameters:
   dependsOn: 'Build'
   WebAppName: 'tailspin-space-game-web-dev-17587'
   resourceManager: 'new'
+  slotBool: false
+  slotName: 'rc'
 
 stages:
 - stage: '${{ parameters.current_stage }}'
@@ -25,5 +27,8 @@ stages:
             displayName: 'Azure App Service Deploy: website'
             inputs:
               azureSubscription: '${{ parameters.resourceManager }}'
+              appType: 'webApp'
+              #deployToSlotOrASE: '${{ parameters.slotBool }}'
+              #SlotName: '${{ parameters.slotName }}'
               appName: '${{ parameters.WebAppName }}'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'

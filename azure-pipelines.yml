@@ -15,14 +15,6 @@ variables:
     value: 'release'
   - template: "templates/vars.yml"
 
-schedules:
-  - cron: '0 3 * * *'
-    displayName: Deploy every day at 3 AM
-    branches:
-      include:
-        - release
-    always: false
-
 stages:
 - stage: 'Build'
   displayName: 'Build the web application'
@@ -90,19 +82,19 @@ stages:
   parameters:
     current_stage: 'dev'
     dependsOn: 'Build'
-    WebAppName: '$(WebAppNameDev)'
-    resourceManager: '$(rmDev)'
+    WebAppName: '$(variables.WebAppNameDev)'
+    resourceManager: '$(variables.rmDev)'
 
 - template: templates/deploy.yml
   parameters:
     current_stage: 'test'
     dependsOn: 'Build'
-    WebAppName: '$(WebAppNameTest)'
-    resourceManager: '$(rmTest)'
+    WebAppName: '$(variables.WebAppNameTest)'
+    resourceManager: '$(variables.rmTest)'
 
 - template: templates/deploy.yml
   parameters:
     current_stage: 'rc'
     dependsOn: 'test'
-    WebAppName: '$(WebAppNameStaging)'
-    resourceManager: '$(rmRC)'
+    WebAppName: '$(variables.WebAppNameStaging)'
+    resourceManager: '$(variables.rmRC)'
