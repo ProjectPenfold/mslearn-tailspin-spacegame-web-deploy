@@ -21,6 +21,7 @@ stages:
       runOnce:
         deploy:
           steps:
+          - ${{ if neq(parameters.current_stage, 'prod')}}
           - download: current
             artifact: drop
           - task: AzureWebApp@1
@@ -33,3 +34,11 @@ stages:
               ${{ if eq(parameters.slotBool, 'true') }}:
                 deployToSlotOrASE: '${{ parameters.slotBool }}'
                 SlotName: '${{ parameters.current_stage }}'
+          - ${{ if eq(parameters.current_stage, 'prod')}}
+            - task: AzureAppServiceManage@0
+              displayName: 'Azure App Service - Swap RC to Production'
+              inputs:
+                azureSubscription: ${{ parameters.resourceManager}}
+                Action: 'Swap Slots'
+                WebAppName: ${{ parameters.WebAppName}}
+                SourceSlot: 'rc'
