@@ -9,6 +9,7 @@ parameters:
 
 stages:
 - stage: '${{ parameters.current_stage }}'
+  condition: or( ne(${{ parameters.current_stage }}, 'prod'), and(eq(${{ parameters.current_stage }}, 'prod'), eq(variables['Build.SourceBranch'], 'release'))
   displayName: 'Deploy to the ${{ parameters.current_stage }} environment'
   dependsOn: '${{ parameters.dependsOn }}'
   jobs:
@@ -38,7 +39,7 @@ stages:
                   ResourceGroupName: '${{ parameters.ResourceGroupName }}'
                   deployToSlotOrASE: '${{ parameters.slotBool }}'
                   SlotName: '${{ parameters.current_stage }}'
-          - ${{ if and(eq(parameters.current_stage, 'prod'), eq(parameters.dependsOn, 'rc'))}}:
+          - ${{ if eq(parameters.current_stage, 'prod')}}:
             - task: AzureAppServiceManage@0
               displayName: 'Azure App Service - Swap RC to Production'
               inputs:
