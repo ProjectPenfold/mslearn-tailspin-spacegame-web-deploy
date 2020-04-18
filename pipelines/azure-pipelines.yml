@@ -6,7 +6,7 @@ trigger:
     - 'release'
   paths:
     include:
-      - templates/*
+      - pipelines/templates/*
 
 variables:
   - name: buildConfiguration
