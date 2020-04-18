@@ -11,7 +11,7 @@ stages:
 - stage: '${{ parameters.current_stage }}'
   condition: | 
     or(ne('${{ parameters.current_stage }}', 'prod'), 
-    and(eq('${{ parameters.current_stage }}', 'prod'), eq(variables['Build.SourceBranch'], 'origin release')))
+    and(eq('${{ parameters.current_stage }}', 'prod'), eq(variables['Build.SourceBranchName'], 'release')))
   displayName: 'Deploy to the ${{ parameters.current_stage }} environment'
   dependsOn: '${{ parameters.dependsOn }}'
   jobs:
