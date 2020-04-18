@@ -9,7 +9,7 @@ parameters:
 
 stages:
 - stage: '${{ parameters.current_stage }}'
-  condition: or( ne(${{ parameters.current_stage }}, 'prod'), and(eq(${{ parameters.current_stage }}, 'prod'), eq(variables['Build.SourceBranch'], 'release'))
+  condition: or( ne('${{ parameters.current_stage }}', 'prod'), and(eq('${{ parameters.current_stage }}', 'prod'), eq(variables['Build.SourceBranch'], 'release_other'))
   displayName: 'Deploy to the ${{ parameters.current_stage }} environment'
   dependsOn: '${{ parameters.dependsOn }}'
   jobs:
